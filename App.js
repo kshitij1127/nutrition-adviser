@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import {
+  NavigationContainer,
+  navigationContainer,
+} from "@react-navigation/native";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import HomeScreen from "./screens/HomeScreen";
+import Diet from "./screens/Diet";
+import Cholera from "./screens/disease-diets/Cholera";
+import Home from "./screens/disease-diets/Home";
+
+const Stack = createStackNavigator();
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Diet" component={Diet} />
+          <Stack.Screen name="Cholera" component={Cholera} />
+          <Stack.Screen name="HomeScreen" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
